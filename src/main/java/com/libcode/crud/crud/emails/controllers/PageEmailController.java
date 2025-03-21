@@ -18,12 +18,10 @@ public class PageEmailController {
     @GetMapping("/test/{email}")
     public Email comprobarEmail(@PathVariable String email) {
         Random random = new Random();
-        Email emailToSave = new Email(email,random.nextBoolean());
-    
-        //Agregar logica para guardar el objeto emailToSave en la base de datos
-        // y al mismo tiempo regresar el objeto guardado
-        //Y retornarlo en lugar de new Email();
-        return new Email();
+        Email emailToSave = new Email(email, random.nextBoolean());
+
+        Email savedEmail = emailRepository.save(emailToSave);
+        
+        return savedEmail;
     }
-    
 }
